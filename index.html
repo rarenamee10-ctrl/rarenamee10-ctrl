@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TikTok Patcher Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- ЖЕЛЕЗОБЕТОННАЯ ВЕРСИЯ 0.11.0 (Работает на GitHub Pages без зависаний) -->
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.0/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <div class="container">
+        <div class="glass-card">
+            
+            <header class="fade-in-up">
+                <h1 class="neon-text">🛡️ TikTok Patcher</h1>
+                <p class="subtitle">Анти-сжатие алгоритмов • v2.0</p>
+            </header>
+
+            <div id="statusBadge" class="badge loading fade-in-up delay-1">
+                <span class="spinner"></span> Инициализация ядра...
+            </div>
+
+            <label class="upload-box fade-in-up delay-2" id="uploadBox">
+                <input type="file" id="fileInput" accept="video/*" hidden>
+                <div class="upload-icon">📁</div>
+                <span class="upload-text">Выбрать видео</span>
+                <span class="upload-hint">Макс. 400 МБ для стабильности</span>
+            </label>
+
+            <div id="infoBox" class="hidden info-box slide-in-right">
+                <div class="info-row"><span>Файл:</span> <strong id="fileName">-</strong></div>
+                <div class="info-row"><span>Размер:</span> <strong id="fileSize">-</strong></div>
+            </div>
+
+            <button id="patchBtn" class="btn-primary hidden pulse-btn" disabled>⚡ Применить патч</button>
+
+            <div id="progressWrap" class="hidden fade-in">
+                <div class="track"><div id="bar" class="fill"></div></div>
+                <p id="logText" class="log">Чтение памяти...</p>
+            </div>
+
+            <div id="doneWrap" class="hidden success-box bounce-in">
+                <div class="success-icon">✅</div>
+                <h2>Патч применен!</h2>
+                <p>Внутренний код изменен. Сервер TikTok пропустит видео без сжатия.</p>
+                
+                <a id="dlLink" class="btn-dl" download="tiktok_patched.mp4">💾 Скачать видео</a>
+                
+                <!-- КНОПКА TIKTOK STUDIO -->
+                <a href="https://www.tiktok.com/upload" target="_blank" class="btn-tiktok">
+                    🚀 TikTok Studio
+                </a>
+            </div>
+
+            <footer class="footer fade-in-up delay-3">
+                <p>Автор: <strong>Kamylnurbek</strong></p>
+                <p class="copyright">© 2024 Все права защищены. Локальная обработка.</p>
+            </footer>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
