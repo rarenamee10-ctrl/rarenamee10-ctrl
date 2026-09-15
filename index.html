@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TikTok Anti-Compress</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Используем стабильную версию -->
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+    <script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <h1>🛡️ TikTok Patcher</h1>
+            <p class="sub">Сохраняет 1080p 60fps 9:16.<br>Обходит алгоритмы сжатия.</p>
+
+            <div id="statusBadge" class="badge loading">
+                <span class="dot"></span> Загрузка ядра...
+            </div>
+
+            <label class="upload-box" id="uploadBox">
+                <input type="file" id="fileInput" accept="video/*" hidden>
+                <span class="icon">📁</span>
+                <span>Нажми, чтобы выбрать видео</span>
+            </label>
+
+            <div id="infoBox" class="hidden info">
+                <span id="fileName">video.mp4</span>
+                <span id="fileSize">0 MB</span>
+            </div>
+
+            <button id="patchBtn" class="btn hidden" disabled>⚡ Применить патч</button>
+
+            <div id="progressWrap" class="hidden">
+                <div class="track"><div id="bar" class="fill"></div></div>
+                <p id="logText" class="log">Чтение памяти...</p>
+            </div>
+
+            <div id="doneWrap" class="hidden success-box">
+                <h2>✅ Готово!</h2>
+                <p>Внутренний код изменен. TikTok не будет сжимать.</p>
+                <a id="dlLink" class="btn-dl" download="tiktok_patched.mp4">Скачать видео</a>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
