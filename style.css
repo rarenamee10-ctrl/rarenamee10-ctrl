@@ -1,0 +1,159 @@
+:root {
+    --bg: #050508;
+    --card: rgba(20, 20, 25, 0.6);
+    --border: rgba(255, 255, 255, 0.08);
+    --neon: #25f4ee;
+    --pink: #fe2c55;
+    --text: #ffffff;
+    --subtext: #888899;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Анимированный фон (Неоновые пятна) */
+.bg-glow {
+    position: fixed;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    animation: float 10s infinite alternate ease-in-out;
+}
+.glow-1 { background: rgba(37, 244, 238, 0.15); top: -100px; left: -100px; }
+.glow-2 { background: rgba(254, 44, 85, 0.15); bottom: -100px; right: -100px; animation-delay: -5s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.2); }
+}
+
+.container { width: 100%; max-width: 420px; z-index: 1; }
+
+.glass-card {
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Типографика и Анимации появления */
+.neon-text {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--neon), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+}
+.subtitle { color: var(--subtext); font-size: 13px; margin-bottom: 25px; }
+
+.fade-in-up { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+/* Статус бар */
+.badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    background: rgba(255,255,255,0.05); margin-bottom: 25px;
+}
+.badge.ready { background: rgba(37, 244, 238, 0.1); color: var(--neon); }
+.spinner {
+    width: 10px; height: 10px; border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff; border-radius: 50%; animation: spin 1s linear infinite;
+}
+.badge.ready .spinner { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Зона загрузки */
+.upload-box {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 35px 20px; border: 2px dashed #333; border-radius: 20px;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.upload-box:active { transform: scale(0.96); border-color: var(--neon); background: rgba(37,244,238,0.05); }
+.upload-icon { font-size: 36px; transition: transform 0.3s; }
+.upload-box:hover .upload-icon { transform: translateY(-5px); }
+.upload-text { font-size: 16px; font-weight: 600; }
+.upload-hint { font-size: 11px; color: #555; }
+
+/* Инфо о файле */
+.info-box {
+    background: rgba(0,0,0,0.4); border-radius: 12px; padding: 12px 15px;
+    margin-top: 15px; font-size: 13px; text-align: left; border: 1px solid var(--border);
+}
+.info-row { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--subtext); }
+.info-row strong { color: #fff; font-weight: 500; }
+
+/* Кнопки */
+.btn-primary {
+    width: 100%; margin-top: 20px; padding: 16px;
+    background: linear-gradient(45deg, var(--pink), #ff5e7e);
+    border: none; border-radius: 14px; color: white; font-size: 16px; font-weight: 700;
+    cursor: pointer; box-shadow: 0 8px 20px rgba(254, 44, 85, 0.3); transition: 0.3s;
+}
+.btn-primary:disabled { opacity: 0.5; box-shadow: none; cursor: not-allowed; }
+.btn-primary:not(:disabled):active { transform: scale(0.95); }
+
+.pulse-btn:not(:disabled) { animation: pulse 2s infinite; }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(254, 44, 85, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0); }
+}
+
+/* Прогресс */
+.track { width: 100%; height: 8px; background: #111; border-radius: 4px; margin-top: 25px; overflow: hidden; }
+.fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon), var(--pink)); transition: width 0.3s; }
+.log { font-size: 12px; color: var(--subtext); margin-top: 10px; }
+
+/* Успех */
+.success-box {
+    margin-top: 25px; padding: 25px 20px;
+    background: rgba(37, 244, 238, 0.03); border: 1px solid rgba(37, 244, 238, 0.3); border-radius: 20px;
+}
+.success-icon { font-size: 40px; margin-bottom: 10px; }
+.success-box h2 { color: var(--neon); font-size: 20px; margin-bottom: 8px; }
+.success-box p { font-size: 13px; color: var(--subtext); margin-bottom: 20px; line-height: 1.5; }
+
+.btn-dl, .btn-tiktok {
+    display: block; width: 100%; padding: 14px; margin-bottom: 10px;
+    text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 15px; transition: 0.2s;
+}
+.btn-dl { background: var(--neon); color: #000; }
+.btn-dl:active { transform: scale(0.96); }
+.btn-tiktok { background: #000; color: #fff; border: 1px solid var(--pink); }
+.btn-tiktok:active { background: var(--pink); transform: scale(0.96); }
+
+/* Подвал */
+.footer { margin-top: 30px; border-top: 1px solid var(--border); padding-top: 20px; }
+.footer p { font-size: 12px; color: #555; margin-bottom: 5px; }
+.footer strong { color: #aaa; }
+.copyright { font-size: 10px !important; opacity: 0.5; }
+
+/* Утилиты анимаций */
+.hidden { display: none !important; }
+.slide-in-right { animation: slideInRight 0.5s forwards; }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+.fade-in { animation: fadeIn 0.5s forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.bounce-in { animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes bounceIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
